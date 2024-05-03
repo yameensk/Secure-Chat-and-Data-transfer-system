@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Transfer System</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        #file-upload,
+        #shared-files {
+            margin: 20px;
+        }
+
+        #shared-files {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .file-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 4px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #buttons {
+            text-align: center;
+            margin: 20px;
+        }
+
+        button {
+            padding: 12px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>File Transfer System</h1>
+</header>
+
+<div id="file-upload">
+    <form action="/file_transfer" method="post" enctype="multipart/form-data">
+        <label for="file">Select a file to upload:</label>
+        <input type="file" name="file" id="file" accept=".pdf, .png, .jpg, .jpeg, .gif" required>
+        <button type="submit">Upload File</button>
+    </form>
+</div>
+
+<div id="shared-files">
+    {% for file in shared_files %}
+        <div class="file-card">
+            <p><strong>{{ file.username }}</strong> shared:</p>
+            <p>{{ file.filename }}</p>
+            <a href="{{ file.file_path }}" target="_blank" download>Download</a>
+        </div>
+    {% endfor %}
+</div>
+
+<div id="buttons">
+    <!-- Add a new button to go back to the chat system -->
+    <button onclick="goToChat()">Back to Chat</button>
+</div>
+
+<script>
+    // Your existing JavaScript code
+
+    // Function to redirect to the chat system
+    function goToChat() {
+        window.location.href = '/chat';
+    }
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
